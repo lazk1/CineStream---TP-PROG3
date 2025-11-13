@@ -3,11 +3,12 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>CineStream - Tu plataforma de streaming</title>
+    <title>Favoritos - CineStream</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+    <link rel="stylesheet" href="../src/style.css">
   </head>
   <body>
     <div id="app">
@@ -19,13 +20,13 @@
           <nav class="nav-menu">
             <ul>
               <li>
-                <a href="../index.html" class="nav-link active">Inicio</a>
+                <a href="../index.html" class="nav-link">Inicio</a>
               </li>
               <li>
                 <a href="../pages/busqueda.html" class="nav-link">Búsqueda</a>
               </li>
               <li>
-                <a href="../pages/favoritos.html" class="nav-link">Favoritos</a>
+                <a href="../pages/favoritos.html" class="nav-link active">Favoritos</a>
               </li>
             </ul>
           </nav>
@@ -40,7 +41,15 @@
         </div>
       </header>
 
-      <!-- Footer -->
+      <main class="main-content">
+        <section class="favorites-section">
+          <h2 class="section-title">Mis Favoritos</h2>
+          <div class="favorites-grid movies-grid">
+            <!-- Los favoritos se cargarán aquí dinámicamente -->
+          </div>
+        </section>
+      </main>
+
       <footer class="footer">
         <div class="footer-content">
           <div class="logo">
@@ -74,6 +83,9 @@
       </footer>
     </div>
 
+    <script type="module" src="../src/main.js"></script>
+  </body>
+</html>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
