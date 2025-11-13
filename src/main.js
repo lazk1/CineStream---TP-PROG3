@@ -173,7 +173,6 @@ class CineStreamApp {
       container.appendChild(card);
     });
   }
-
   loadFavoritesPage() {
     const favorites = storage.getFavorites();
     const container = document.querySelector(".favorites-grid");
@@ -189,6 +188,13 @@ class CineStreamApp {
 
       favorites.forEach((fav) => {
         const card = domUtils.createMovieCard(fav, fav.type);
+
+        // Asegurar que el corazón muestre el estado correcto
+        const favoriteBtn = card.querySelector(".favorite-btn i");
+        if (favoriteBtn) {
+          favoriteBtn.classList.replace("far", "fas");
+        }
+
         container.appendChild(card);
       });
     }
@@ -350,22 +356,55 @@ class CineStreamApp {
     const isCurrentlyFavorite = favoriteBtn.classList.contains("fas");
 
     if (isCurrentlyFavorite) {
+      // Remover de favoritos
       storage.removeFromFavorites(parseInt(id), type);
       favoriteBtn.classList.replace("fas", "far");
+
+      // Si estamos en la página de favoritos, remover la tarjeta
+      if (this.currentPage.includes("favoritos.html")) {
+        this.removeFromFavoritesView(card);
+      }
     } else {
-      // Para agregar a favoritos necesitamos los datos básicos
+      // Agregar a favoritos
       const title = card.querySelector(".movie-title").textContent;
-      const posterPath = card.querySelector(".movie-poster img").src;
+      const posterImg = card.querySelector(".movie-poster img");
+      const posterPath = posterImg.src.includes("image.tmdb.org")
+        ? posterImg.src.replace("https://image.tmdb.org/t/p/w500", "")
+        : null;
+
       const item = {
         id: parseInt(id),
         type,
         title,
-        poster_path: posterPath.includes("image.tmdb.org")
-          ? posterPath.replace("https://image.tmdb.org/t/p/w500", "")
-          : null,
+        poster_path: posterPath,
+        // Agregar más datos si es necesario para consistencia
+        vote_average: card.querySelector(".movie-rating")
+          ? parseFloat(card.querySelector(".movie-rating").textContent)
+          : 0,
       };
       storage.addToFavorites(item);
       favoriteBtn.classList.replace("far", "fas");
+    }
+  }
+
+  // Nueva función para remover tarjeta de la vista de favoritos
+  removeFromFavoritesView(card) {
+    card.style.opacity = "0";
+    card.style.transform = "scale(0.8)";
+    card.style.transition = "all 0.3s ease";
+
+    setTimeout(() => {
+      card.remove();
+      this.checkEmptyFavorites();
+    }, 300);
+  }
+
+  // Verificar si la lista de favoritos está vacía
+  checkEmptyFavorites() {
+    const container = document.querySelector(".favorites-grid");
+    if (container && container.children.length === 0) {
+      container.innerHTML =
+        '<p class="no-favorites">No tienes favoritos aún</p>';
     }
   }
 
