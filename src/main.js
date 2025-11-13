@@ -35,6 +35,12 @@ class CineStreamApp {
                 tmdb.getUpcomingMovies()
             ]);
 
+            console.log('Datos cargados:', {
+                movies: popularMovies.results?.length,
+                series: popularSeries.results?.length,
+                upcoming: upcomingMovies.results?.length
+            });
+
             // Renderizar secciones
             this.renderSection('popular-movies', popularMovies.results, 'movie');
             this.renderSection('popular-series', popularSeries.results, 'tv');
@@ -304,7 +310,7 @@ class CineStreamApp {
         const isCurrentlyFavorite = favoriteBtn.classList.contains('fas');
         
         if (isCurrentlyFavorite) {
-            storage.removeFromFavorites(id, type);
+            storage.removeFromFavorites(parseInt(id), type);
             favoriteBtn.classList.replace('fas', 'far');
         } else {
             // Para agregar a favoritos necesitamos los datos básicos
@@ -314,7 +320,7 @@ class CineStreamApp {
                 id: parseInt(id), 
                 type, 
                 title,
-                poster_path: posterPath.includes('image.tmdb.org') ? posterPath.replace(IMAGE_BASE_URL, '') : null
+                poster_path: posterPath.includes('image.tmdb.org') ? posterPath.replace('https://image.tmdb.org/t/p/w500', '') : null
             };
             storage.addToFavorites(item);
             favoriteBtn.classList.replace('far', 'fas');
