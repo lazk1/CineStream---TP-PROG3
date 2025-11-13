@@ -23,6 +23,8 @@ body {
   background-color: var(--background-color);
   color: var(--text-color);
   line-height: 1.6;
+  padding-top: 80px; /* ESPACIO PARA NAVBAR FIJO */
+  overflow-x: hidden;
 }
 
 /* Navbar */
@@ -38,10 +40,14 @@ body {
     rgba(0, 0, 0, 0) 100%
   );
   transition: var(--transition);
+  height: 80px; /* ALTURA FIJA */
+  display: flex;
+  align-items: center;
 }
 
 .navbar.scrolled {
   background-color: var(--background-color);
+  background: var(--background-color);
 }
 
 .navbar-container {
@@ -50,6 +56,7 @@ body {
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+  width: 100%;
 }
 
 .logo h1 {
@@ -107,6 +114,7 @@ body {
   border-radius: 50%;
   cursor: pointer;
 }
+
 /* Hero Section */
 .hero {
   position: relative;
@@ -118,6 +126,7 @@ body {
   align-items: center;
   padding: 0 2rem;
   margin-bottom: 2rem;
+  margin-top: -80px; /* COMPENSAR PADDING DEL BODY */
 }
 
 .hero-overlay {
@@ -196,6 +205,8 @@ body {
   max-width: 1400px;
   margin: 0 auto;
   width: 100%;
+  position: relative;
+  z-index: 1;
 }
 
 .content-section {
@@ -543,61 +554,141 @@ body {
   padding: 2rem 0;
 }
 
-/* Responsive */
+/* RESPONSIVE DESIGN */
 @media (max-width: 768px) {
+  /* Ajustar espacios para móvil */
+  body {
+    padding-top: 70px; /* MENOS ESPACIO EN MÓVIL */
+  }
+  
+  .navbar {
+    height: 70px;
+    padding: 0.8rem 1rem;
+  }
+  
+  .hero {
+    margin-top: -70px; /* COMPENSAR EN MÓVIL */
+    height: 60vh;
+    padding: 0 1rem;
+  }
+  
   .navbar-container {
-    flex-direction: column;
+    flex-direction: row; /* MANTENER EN FILA */
     gap: 1rem;
   }
-
-  .hero {
-    height: 60vh;
+  
+  .nav-menu ul {
+    gap: 1rem;
   }
-
+  
+  .nav-link {
+    font-size: 0.8rem;
+  }
+  
+  .logo h1 {
+    font-size: 1.4rem;
+  }
+  
   .hero-title {
     font-size: 2rem;
   }
-
+  
+  .hero-description {
+    font-size: 1rem;
+  }
+  
+  .hero-actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.8rem;
+  }
+  
+  .btn {
+    padding: 0.6rem 1.2rem;
+    font-size: 0.9rem;
+  }
+  
+  .main-content {
+    padding: 1rem;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.8rem;
+  }
+  
   .modal-details {
     flex-direction: column;
   }
-
+  
   .modal-poster {
     flex: none;
     max-width: 300px;
     margin: 0 auto;
   }
-
-  .movies-grid {
-    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-  }
-
-  .main-content {
-    padding: 1rem;
-  }
 }
 
 @media (max-width: 480px) {
+  body {
+    padding-top: 60px; /* AÚN MENOS ESPACIO */
+  }
+  
+  .navbar {
+    height: 60px;
+    padding: 0.6rem 0.8rem;
+  }
+  
+  .hero {
+    margin-top: -60px;
+    height: 50vh;
+  }
+  
+  .logo h1 {
+    font-size: 1.2rem;
+  }
+  
+  .nav-menu ul {
+    gap: 0.7rem;
+  }
+  
+  .nav-link {
+    font-size: 0.75rem;
+  }
+  
+  .profile {
+    width: 32px;
+  }
+  
+  .hero-title {
+    font-size: 1.5rem;
+  }
+  
+  .hero-description {
+    font-size: 0.9rem;
+    margin-bottom: 1rem;
+  }
+  
+  .movies-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 0.6rem;
+  }
+  
+  .movie-title {
+    font-size: 0.8rem;
+  }
+  
+  .movie-meta {
+    font-size: 0.7rem;
+  }
+  
   .main-content,
   .navbar,
   .hero {
     padding-left: 1rem;
     padding-right: 1rem;
   }
-
+  
   .hero-actions {
     flex-direction: column;
-  }
-
-  .movies-grid {
-    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
-  }
-
-  .hero-title {
-    font-size: 1.5rem;
-  }
-
-  .hero-description {
-    font-size: 0.9rem;
   }
 }
