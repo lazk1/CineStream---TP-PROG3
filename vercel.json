@@ -1,11 +1,4 @@
 {
-  "routes": [
-    {
-      "src": "/(.*)",
-      "dest": "/index.html",
-      "methods": ["GET"]
-    }
-  ],
   "rewrites": [
     {
       "source": "/(.*)",
