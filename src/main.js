@@ -1,7 +1,7 @@
-import "/style.css";
-import { tmdb } from "/api/tmdb.js";
-import { storage } from "/utils/storage.js";
-import { domUtils } from "/utils/dom.js";
+import "./style.css";
+import { tmdb } from "./api/tmdb.js";
+import { storage } from "./utils/storage.js";
+import { domUtils } from "./utils/dom.js";
 
 class CineStreamApp {
   constructor() {
