@@ -1,7 +1,6 @@
 {
-  "name": "tp-final",
-  "private": true,
-  "version": "0.0.0",
+  "name": "cinestream",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -9,6 +8,6 @@
     "preview": "vite preview"
   },
   "devDependencies": {
-    "vite": "^7.2.2"
+    "vite": "^4.4.0"
   }
 }
